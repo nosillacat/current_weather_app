@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <!--
+            Author: Allison Priebe
+            Started: 9/2/2021
+            Last Edited: 9/2/2021
+            Validated:
+            Tested:
+        -->
+        <!-- Web page title. -->
+        <meta charset="utf-8">
+        <title>Quick look at global weather.</title>
+        <!-- Web page options. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <!-- Web page font. -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;400&display=swap" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+        <!-- Welcome header and brief website description. -->
+        <section class="top-header">
+            <div class="container">
+                <h1 class="greeting">Current Weather</h1>
+                <p class="purpose">View current weather conditions of major cities from around the world.</p>
+                <form>
+                    <input type="text" placeholder="City name..." autofocus>
+                    <button type="submit">SEARCH</button>
+                    <span class="msg"></span>
+                </form>
+            </div>
+        </section>
+
+        <!-- Weather card section created using AJAX. -->
+        <section class="ajax-section">
+            <div class="container">
+                <ul class="cities"></ul>
+            </div>
+        </section>
+
+        <!-- Web page footer. -->
+        <footer class="page-footer">
+            <div class="container">
+                <small>Made with <span>❤</span> by Ally Priebe.</small>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+
+    </body>
+
+</html>
