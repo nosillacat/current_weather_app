@@ -122,11 +122,13 @@ body {
 }
 
 .top-header form .msg {
+    font-size: .75rem;
     position: absolute;
     bottom: -40px;
     left: 0;
     max-width: 450px;
     min-height: 30px;
+    color: lightcoral;
 }
 
 /* Second section - contains weather cards created with AJAX js ------------ */
