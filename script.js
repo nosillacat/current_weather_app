@@ -12,12 +12,39 @@ const list = document.querySelector(".ajax-section .cities");
 // Create event listener.
 form.addEventListener("submit", e => {
     e.preventDefault();
-    const listItems = list.querySelectorAll(".ajax-section .city");
     const inputVal = input.value;
-
+    
+    // Ensure that only one city at a time can be selected.
+    const listItems = list.querySelectorAll(".ajax-section .city");
+    const listItemsArray = Array.from(listItems);
+    
+    if (listItemsArray.length > 0) {
+        const filteredArray = listItemsArray.filter(el => {
+            let content = "";
+            if (inputVal.includes(",")) {
+                if (inputVal.split(",")[1].length > 2) {
+                    inputVal = inputVal.split(",")[0];
+                    content = el.querySelector("city-name span").textContent.toLowerCase();
+                } else {
+                    content = el.querySelector(".city-name").dataset.name.toLowerCase();
+                }
+            } else {
+                content = el.querySelector(".city-name span").textContent.toLowerCase();
+            }
+            return content == inputVal.toLowerCase();
+        });
+        if (filteredArray.length > 0) {
+            msg.textContent = `You already know the weather for ${filteredArray[0].querySelector(".city-name span").textContent} please be more specific by providing the state or country code!`;
+            
+            form.reset();
+            input.focus();
+            return;
+        }
+    }
+    
     // AJAX code
     // Link to retrieve local weather data from OpenWeather.
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${apiKey}&units=imperial`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal},${inputVal},${inputVal}&appid=${apiKey}&units=imperial`;
 
     // Retrieve data from OpenWeather.
     fetch(url)
@@ -47,7 +74,7 @@ form.addEventListener("submit", e => {
             list.appendChild(li);
         })
         .catch(() => {
-            msg.textContent = "Please search for a major city only.";
+            msg.textContent = `Please search try your search again.`;
         });
 
     msg.textContent = "";
