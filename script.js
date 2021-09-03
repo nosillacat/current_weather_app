@@ -49,7 +49,7 @@ form.addEventListener("submit", e => {
     // Retrieve data from OpenWeather.
     fetch(url)
         .then(response => response.json())
-        .then(data => {
+        .then(data => { 
             const { main, name, sys, weather } = data;
             const icon = `https://openweathermap.org/img/wn/${
                 weather[0]["icon"]
