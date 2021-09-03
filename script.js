@@ -13,7 +13,7 @@ const list = document.querySelector(".ajax-section .cities");
 form.addEventListener("submit", e => {
     e.preventDefault();
     const listItems = list.querySelectorAll(".ajax-section .city");
-    const inputVal = input.value;
+    const inputVal = input.value;    
 
     // AJAX code
     // Link to retrieve local weather data from OpenWeather.
@@ -49,6 +49,28 @@ form.addEventListener("submit", e => {
         .catch(() => {
             msg.textContent = "Please search for a major city only.";
         });
+    
+     // Ensure only one request for a city can occur.
+    const listItems = list.querySelectorAll(".ajax-section .city");
+    const listItemsArray = Array.from(listItems);
+    
+    if (listItemsArray.length > 0) {
+        const filteredArray = listItemsArray.filter(el => {
+            let content = "";
+            if (inputVal.includes(",")) {
+                if (inputVal.split(",")[1].length > 2) {
+                    inputVal = inputVal.split(",")[0];
+                    content = el.querySelector(".city-name span").textContent.toLowerCase();
+                } else {
+                    content = el.querySelector(".city-name").dataset.name.toLowerCase();
+                } else {
+                    content = el.querySelector(".city-name span").textContent.toLowerCase();
+                }
+                return content == inputVal.toLowerCase();
+         )};
+            
+    if (filteredArray.length > 0) {
+        msg.textContent = "You already know the weather for ${filteredArray[0].querySelector(".city-name span").textContent} ...otherwise be more specific by providing the country code as well.";
 
     msg.textContent = "";
     form.reset();
