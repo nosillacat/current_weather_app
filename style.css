@@ -152,7 +152,7 @@ body {
 
 .ajax-section .city::after {
     content: '';
-    width: 90%;
+    width: 80%;
     height: 50px;
     position: absolute;
     bottom: -10px;
