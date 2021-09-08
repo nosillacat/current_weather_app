@@ -49,8 +49,11 @@ form.addEventListener("submit", e => {
     // Retrieve data from OpenWeather.
     fetch(url)
         .then(response => response.json())
-        .then(data => {
-            const { main, name, sys, weather } = data;
+        .then(data => { 
+            const { main, name, sunrise, sunset, sys, weather } = data;
+            const sunriseTime = new Date(sys.sunrise * 1000);
+            const sunsetTime = new Date(sys.sunset * 1000);
+
             const icon = `https://openweathermap.org/img/wn/${
                 weather[0]["icon"]
               }@2x.png`;
@@ -62,19 +65,21 @@ form.addEventListener("submit", e => {
               <span>${name}</span>
               <sup>${sys.country}</sup>
             </h2>
-            <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup>
+            <div class="city-temp">${Math.round(main.temp)}<sup>°F</sup>
             </div>
             <figure>
               <img class="city-icon" src=${icon} alt=${weather[0]["main"]}>
               <figcaption>${weather[0]["description"]}</figcaption>
             </figure>
+            <div class="city-sunrise">Sunrise: ${sunriseTime.toLocaleTimeString()}</div>
+            <div class="city-sunset">Sunset: ${sunsetTime.toLocaleTimeString()}</div>
           `;
 
             li.innerHTML = markup;
             list.appendChild(li);
         })
         .catch(() => {
-            msg.textContent = `Please search try your search again.`;
+            msg.textContent = `Please try your search again.`;
         });
 
     msg.textContent = "";
