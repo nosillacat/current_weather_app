@@ -189,10 +189,26 @@ body {
 }
 
 .ajax-section .city-icon {
-    margin-top: 10px;
+    margin-top: 5px;
     width: 100px;
     height: 100px;
 }
+
+.ajax-section .city-sunrise {
+    margin-top: 20px;
+    font-size: .75em;
+    position: relative;
+    color: var(--text_main)
+}
+
+.ajax-section .city-sunset {
+    margin-top: 5px;
+    font-size: .75em; 
+    position: relative;
+    color: var(--text_main)
+}
+
+/* Screen size ------------------------------------------------------------- */
 
 @media screen and (max-width: 1000px) {
     body {
