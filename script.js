@@ -1,7 +1,7 @@
 // Javascript for the Weather App website!
 
 // API Key from OpeanWeather.com!! KEEP IT A SECRET!!
-const apiKey = "5a310689a2614242b9ca6646e22ea2b2";
+const apiKey = "********************************";
 
 // Use the city name OR city name, country code to search.
 const form = document.querySelector(".top-header form");
