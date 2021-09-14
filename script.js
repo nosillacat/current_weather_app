@@ -1,4 +1,4 @@
-// Javascript for the Web App website!
+// Javascript for the Weather App website!
 
 // API Key from OpeanWeather.com!! KEEP IT A SECRET!!
 const apiKey = "5a310689a2614242b9ca6646e22ea2b2";
@@ -12,39 +12,46 @@ const list = document.querySelector(".ajax-section .cities");
 // Create event listener.
 form.addEventListener("submit", e => {
     e.preventDefault();
-    const inputVal = input.value;
+    let inputVal = input.value;
     
     // Ensure that only one city at a time can be selected.
     const listItems = list.querySelectorAll(".ajax-section .city");
     const listItemsArray = Array.from(listItems);
-    
+  
     if (listItemsArray.length > 0) {
-        const filteredArray = listItemsArray.filter(el => {
-            let content = "";
-            if (inputVal.includes(",")) {
-                if (inputVal.split(",")[1].length > 2) {
-                    inputVal = inputVal.split(",")[0];
-                    content = el.querySelector("city-name span").textContent.toLowerCase();
-                } else {
-                    content = el.querySelector(".city-name").dataset.name.toLowerCase();
-                }
-            } else {
-                content = el.querySelector(".city-name span").textContent.toLowerCase();
-            }
-            return content == inputVal.toLowerCase();
-        });
-        if (filteredArray.length > 0) {
-            msg.textContent = `You already know the weather for ${filteredArray[0].querySelector(".city-name span").textContent} please be more specific by providing the state or country code!`;
-            
-            form.reset();
-            input.focus();
-            return;
+      const filteredArray = listItemsArray.filter(el => {
+        let content = "";
+        //athens,gr
+        if (inputVal.includes(",")) {
+
+          if (inputVal.split(",")[1].length > 2) {
+            inputVal = inputVal.split(",")[0];
+            content = el
+              .querySelector(".city-name span")
+              .textContent.toLowerCase();
+          } else {
+            content = el.querySelector(".city-name").dataset.name.toLowerCase();
+          }
+        } else {
+ 
+          content = el.querySelector(".city-name span").textContent.toLowerCase();
         }
+        return content == inputVal.toLowerCase();
+      });
+  
+      if (filteredArray.length > 0) {
+        msg.textContent = `Already searched for the weather for ${
+          filteredArray[0].querySelector(".city-name span").textContent
+        }, please be more specific!!`;
+        form.reset();
+        input.focus();
+        return;
+      }
     }
-    
+
     // AJAX code
-    // Link to retrieve local weather data from OpenWeather.
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal},${inputVal},${inputVal}&appid=${apiKey}&units=imperial`;
+    // Link to retrieve weather data from OpenWeather.
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal},&appid=${apiKey}&units=imperial&lang=en`;
 
     // Retrieve data from OpenWeather.
     fetch(url)
@@ -68,7 +75,7 @@ form.addEventListener("submit", e => {
             <div class="city-temp">${Math.round(main.temp)}<sup>°F</sup>
             </div>
             <figure>
-              <img class="city-icon" src=${icon} alt=${weather[0]["main"]}>
+              <img class="city-icon" src="${icon}" alt="${weather[0]["main"]}">
               <figcaption>${weather[0]["description"]}</figcaption>
             </figure>
             <div class="city-sunrise">Sunrise: ${sunriseTime.toLocaleTimeString()}</div>
