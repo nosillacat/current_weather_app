@@ -140,9 +140,6 @@ body {
 
 .top-header form .msg {
     font-size: 1rem;
-    position: relative;
-    max-width: 450px;
-    min-height: 30px;
     color: lightcoral;
 }
 
