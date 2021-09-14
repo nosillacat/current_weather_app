@@ -1,4 +1,4 @@
-# weather_2.0
+# Current_Weather
 
 This weather app allows you to quickly check the current temperature and weather conditions of multiple cities from around the world. It also checks the sunrise and sunset times of the cities you look up. This app requires a free API key from OpenWeather.org that can be plugged into the API key spot in the javascript file.
 
