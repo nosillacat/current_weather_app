@@ -1,6 +1,6 @@
 // Javascript for the Weather App website!
 
-// API Key from OpeanWeather.com!! KEEP IT A SECRET!!
+// API Key from OpeanWeather.com!! KEEP IT A SECRET!! Tell users how to obtain their own free API key!
 const apiKey = "********************************";
 
 // Use the city name OR city name, country code to search.
@@ -21,7 +21,8 @@ form.addEventListener("submit", e => {
     if (listItemsArray.length > 0) {
       const filteredArray = listItemsArray.filter(el => {
         let content = "";
-        //athens,gr
+        
+        // Allows for city to be searched for with a comma to specify state or country (paris, fr or chicago, il)
         if (inputVal.includes(",")) {
 
           if (inputVal.split(",")[1].length > 2) {
@@ -39,6 +40,7 @@ form.addEventListener("submit", e => {
         return content == inputVal.toLowerCase();
       });
   
+      // Message that appears if a city's weather data has already been searched for!
       if (filteredArray.length > 0) {
         msg.textContent = `Already searched for the weather for ${
           filteredArray[0].querySelector(".city-name span").textContent
@@ -60,11 +62,14 @@ form.addEventListener("submit", e => {
             const { main, name, sunrise, sunset, sys, weather } = data;
             const sunriseTime = new Date(sys.sunrise * 1000);
             const sunsetTime = new Date(sys.sunset * 1000);
-
+            
+            // Weather icons - come from OpenWeather.org.
             const icon = `https://openweathermap.org/img/wn/${
                 weather[0]["icon"]
               }@2x.png`;
-
+            
+            // Retrieve city name, country code, weather data (temp, current weather & icon, sunrise & sunset)
+            // Temp is in degrees Fahrenheit
             const li = document.createElement("li");
             li.classList.add("city");
             const markup = `
@@ -85,8 +90,9 @@ form.addEventListener("submit", e => {
             li.innerHTML = markup;
             list.appendChild(li);
         })
+        // Message that appears if city is not found.
         .catch(() => {
-            msg.textContent = `Please try your search again.`;
+            msg.textContent = `City not found. Please try your search again.`;
         });
 
     msg.textContent = "";
