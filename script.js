@@ -68,8 +68,9 @@ form.addEventListener("submit", e => {
                 weather[0]["icon"]
               }@2x.png`;
             
-            // Retrieve city name, country code, weather data (temp, current weather & icon, sunrise & sunset)
-            // Temp is in degrees Fahrenheit
+            // Retrieve city name, country code, weather data (temp, current weather & icon, sunrise & sunset); this information can be obtained
+            // using the formats found at https://openweathermap.org/current.
+            // Temp is in degrees Fahrenheit. Sunrise/sunset times appear in app user's local time.
             const li = document.createElement("li");
             li.classList.add("city");
             const markup = `
