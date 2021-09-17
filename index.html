@@ -6,12 +6,15 @@
         <!--
             Author: Allison Priebe
             Started: 9/2/2021
+            Project: A simple weather app that shows temp, current weather, sunrise and sunset of cities available
+                    through search. Weather information is from Open Weather.org.
         -->
         <!-- Web page title. -->
         <meta charset="utf-8">
         <title>Current Weather around the World</title>
         <!-- Web page options. -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Link to CSS file. -->
         <link rel="stylesheet" href="style.css">
         <!-- Web page font. From google fonts: Barlow Regular 400. -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,6 +30,7 @@
             <div class="container">
                 <h1 class="greeting">Current Weather☀️</h1>
                 <p class="purpose">View current weather conditions of cities from around the world.</p>
+                <!-- This app requires an API key from OpenWeather!  Alert users!! -->
                 <p class="needAPI">You will need a free API key from <a href="https://openweathermap.org/api" target ="_blank"><u>OpenWeather.org</u></a> to use this app!</p>          
                 <!-- Search bar and button. Error message pops up below the search bar. -->
                 <form>
@@ -51,6 +55,7 @@
             </div>
         </footer>
 
+        <!-- Link to JavaScript file. -->
         <script src="script.js"></script>
 
     </body>
