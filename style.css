@@ -273,6 +273,10 @@ body {
     body {
         padding: 15px;
     }
+    
+    .container .cities {
+        padding: 25px;
+    }
 
     .ajax-section .cities {
         grid-template-columns: repeat(1, 1fr);
